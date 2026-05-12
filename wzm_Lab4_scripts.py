@@ -1,7 +1,7 @@
 import arcpy
 import pandas as pd
 import matplotlib.pyplot as plt
-import Lab4_functions as l4
+import wzm_Lab4_functions as l4
 import importlib
 
 
@@ -24,7 +24,7 @@ import importlib
 #   
 # Set the workspace to point to the geodatabase you are using for this lab
 
-arcpy.env.workspace = r"R:\2025\Spring\GEOG562\Instructors\kennedy_2025\Lab4\Lab4_arcproject_REK\Lab4_arcproject_REK.gdb" 
+arcpy.env.workspace = r"C:\Users\wilbu\Documents\ArcGIS\Projects\lab4_wilburmanibo\lab4_starter_database.gdb" 
 
 ############################################################################
 # Block 3:  We are going to work with the notion of extending raster objects
@@ -46,7 +46,8 @@ print(r.metadata["bounds"])
 # Question 1
 #  Why do we need to use the "super()" function in the definition of the SmartRaster?
 
-# Your answer:
+# Your answer: super() is used to call the parent class's __init__ method, ensuring that the initialization logic 
+# of the parent class is executed before adding the additional functionality of the child class.
 
 
 
@@ -92,7 +93,9 @@ else:
 #    are relevant -- band 4 and 3.  But we didn't
 #    set them here -- why did it work?
 
-#  Your answer:
+#  Your answer: The method calculate_ndvi has default values for band4_index and band3_index, which are set to 4 and 3
+#  respectively. When we called the method without providing specific arguments, it used these default values, 
+# allowing the NDVI calculation to proceed without any issues.
 
 
 
@@ -141,7 +144,12 @@ smart_vector.save_as("Corvallis_parcels_plusNDVI")
 #     reasonably?  Any observations or oddities? 
 # 
 
-#Your answer
+#Your answer: The zonal statistics for NDVI appear to have worked reasonably well. The mean NDVI values for the 
+# parcels seem to reflect the expected vegetation patterns, with higher values in areas that are likely to have 
+# more vegetation and lower values in areas with less vegetation. However, there may be some oddities or outliers
+#  in the data, such as parcels with unusually high or low mean NDVI values, which could be due to various factors
+#  like mixed land cover types within a parcel or errors in the NDVI calculation. It would be beneficial to further 
+# investigate these outliers to understand their causes.
 
 
 
@@ -168,7 +176,8 @@ okay, df = smart_vector.extract_to_pandas_df()
 #   call to the method, and how do I use it in the
 #   code?  
 
-# Your answer
+# Your answer: Defining "fields=None" in the method signature allows the method to be called without explicitly 
+# providing a list of fields.
 
 
 
@@ -204,7 +213,10 @@ sp.scatterplot(x_field, y_field, x_min=1901, x_max = 2030)
 #  
 
 
-# Your answer:
+# Your answer: df_to_plot is a copy of the original DataFrame that is being used to create the scatter plot. 
+# The line of code is filtering the DataFrame to include only rows where the value in the x_field column is
+#  greater than or equal to x_min. This effectively sets a lower bound on the x-axis values that will be
+#  included in the scatter plot, allowing us to focus on a specific range of data.
 
 
 
