@@ -278,7 +278,12 @@ if ok:
 #  What will happen if you give it a field that is not
 #    numeric?   How might you make this work better?
 
-# Your answer
+# Your answer: If you give the plot_from_file method a field that is not numeric, it will likely result in an 
+# error when trying to create the scatter plot, as matplotlib expects numeric data for the x and y axes. 
+# To make this work better, you could add error handling in the plot_from_file method to check if the 
+# specified fields are numeric before attempting to create the plot. If they are not numeric, you could 
+# either skip those fields and provide a warning message or attempt to convert them to numeric values if 
+# possible (e.g., by encoding categorical variables).
 
 
 
@@ -296,7 +301,11 @@ if ok:
 #   Can you describe (in words, no need for code)
 #   how you might achieve that?
 
-# Your answer:
+# Your answer: To automatically generate the output filename based on the x and y variables, you could modify the 
+# plot_from_file method to construct the filename using the values of x_field and y_field. For example, you could 
+# create a filename in the format "scatterplot_{x_field}_vs_{y_field}.png". This way, when you call the method with 
+# different x and y fields, it will automatically generate a unique filename that reflects the variables being plotted. 
+# You could also include additional parameters in the filename if desired, such as any specified ranges for the axes.
 
 
 
